@@ -6,7 +6,7 @@ import logging
 
 if __name__ == '__main__':
     # setting.run_case = {Tag.ALL}  # 运行全部测试用例
-    setting.run_case = {Tag.UI_F1}  # 只运行SMOKE标记的测试用例
+    setting.run_case = {Tag.UI_F2}  # 只运行SMOKE标记的测试用例
     # setting.run_case = {Tag.SMOKE, Tag.V1_0_0}   # 只运行SMOKE和V1_0_0标记的测试用例
     # setting.run_case = {Tag.V1_0_0}  # 只运行SMOKE和V1_0_0标记的测试用例
     # setting.run_case ={Tag.UI}
@@ -26,5 +26,5 @@ if __name__ == '__main__':
     # log.set_level_to_debug()     # 设置log级别的另外一种方法
 
     runner = TestRunner()
-    runner.add_case_dir("testcase/appium_case")
+    runner.add_case_dir("appium_case")
     runner.run_test(report_title='接口自动化测试报告')
