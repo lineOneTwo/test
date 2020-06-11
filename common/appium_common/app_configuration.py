@@ -16,23 +16,7 @@ import os
 
 
 def get_driver():
-    # try:
-    #     desired_caps = {
-    #         'appPackage': 'com.icourt.alpha',
-    #         'appActivity': '.module.other.WelcomeActivity',#被测程序启动时的Activity
-    #         'platformName': 'Android',
-    #         # 'unicodeKeyboard': 'true' , # 是否支持unicode的键盘。如果需要输入中文，要设置为“true”
-    #         # 'resetKeyboard': 'true',  # 是否在测试结束后将键盘重轩为系统默认的输入法。
-    #         # 'newCommandTimeout': '120',  # Appium服务器待appium客户端发送新消息的时间。默认为60秒
-    #         # 'platformVersion': '6.0.1',
-    #         # 'deviceName': 'OPPO A57',
-    #         # 'udid': 'fb57ca3a',
-    #         'noReset': True, # true:不重新安装APP，false:重新安装app
-    #         'automationName': 'uiautomator2',
-    #
-    #     }
-    #     self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub",desired_caps)
-    # -*- coding: utf-8 -*-
+
 
     # 测试的包的路径和包名
     appLocation = " /Users/Downloads/app.apk "
@@ -50,13 +34,23 @@ def get_driver():
     deviceAndroidVersion = list(os.popen('adb shell getprop ro.build.version.release').readlines())
     deviceVersion = re.findall(r'^\w*\b', deviceAndroidVersion[0])[0]
 
-    # 读取 APK 的 package 信息
-    # appPackageAdb = list(os.popen('aapt dump badging ' + appLocation).readlines())
-    # appPackage = re.findall(r'\'com\w*.*?\'', appPackageAdb[0])[0]
+    #读取 APK 的 package 信息
+    appPackageAdb = list(os.popen('aapt dump badging ' + appLocation).readlines())
+    appPackage = re.findall(r'\'com\w*.*?\'', appPackageAdb[0])[0]
 
     # # 删除以前的安装包
     # os.system('adb uninstall ' + appPackage)
     # print(deviceName)
+    desired_caps = {
+        'platformName': 'Android',
+        'deviceName': 'OPPOr11s',
+        'platformVersion': '9',
+        'appPackage': appPackage,
+        'appActivity': appPackage + ".PageSplash",
+        'noReset': False,
+        'resetKeyboard': False  # 将键盘给隐藏起来
+        # 'unicodeKeyboard': True,# 使用unicodeKeyboard的编码方式来发送字符串
+    }
 
     desired_caps = {
         'appPackage': 'com.icourt.alpha',
