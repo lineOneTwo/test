@@ -1,3 +1,6 @@
+# —*- coding:utf-8 -*-
+#Created by Administrator on 2020/6/11
+#Copyright (C) 2020 $USER.All rights reserved.
 # 读取 APK 的 package 信息
 import os
 import re  # 读取设备 id
